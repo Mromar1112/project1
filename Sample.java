@@ -1,14 +1,15 @@
 public class Sample {
     public static void main(String[] args) {
-        // Predefined numbers
-        double num1 = 5.0; // You can change these values as needed
+    
+        double num1 = 5.0; 
         double num2 = 10.0;
-
-        // Perform multiplication
         double result = num1 * num2;
-
-        // Display the result
         System.out.println("The result of multiplication is: " + result);}}
+
+..........................................................................................................
+
+
+java pipeline
 pipeline {
     agent any
 
@@ -33,11 +34,29 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                // Add your deployment commands here (like copying files to a server)
+              
             }
         }
     }
 }
+
+..................................................................................................................
+    
+app.js
+    const express = require('express');
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, world! I am from Node.js'); 
+});
+
+app.listen(3020, () => {
+  console.log('Server is running on Port 3020');
+});
+
+............................................................................................................
+
 nodejs pipeline
     pipeline {
     agent any
@@ -62,3 +81,5 @@ nodejs pipeline
         }
     }
 }
+
+....................................................................................................................
