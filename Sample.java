@@ -1,3 +1,4 @@
+[1]
 public class Sample {
     public static void main(String[] args) {
     
@@ -42,7 +43,8 @@ pipeline {
 }
 
 ..................................................................................................................
-    
+
+[2]
 app.js using java prgm
     
 const express = require('express');
@@ -87,6 +89,8 @@ nodejs pipeline
 
 ....................................................................................................................
 
+[3]
+    
 touch Dockerfile java prgm
 
     # Use an official OpenJDK runtime as a parent image
@@ -103,19 +107,19 @@ RUN javac Sample.java
 
 # Command to run the program
 CMD ["java", "Sample"]
-
+..
+docker build -t dockernodejs ""
 ............................................................................................
 
+[4]
     
 app.js for docker nodejs
-    const express = require('express');
-
+    
+const express = require('express');
 const app = express();
-
 app.get('/', (req, res) => {
   res.send('Hello, world! I am from Node.js'); 
 });
-
 app.listen(3111, () => {
   console.log('Server is running on Port 3111');
 });
@@ -124,25 +128,19 @@ app.listen(3111, () => {
 
 touch dockerfile using nodejs
 
-    # Use the official Node.js image from the Docker Hub
+  
 FROM node:14
-
 # Set the working directory inside the container
 WORKDIR /usr/src/app
-
 # Copy package.json and package-lock.json (if available)
 COPY package.json ./
 COPY package-lock.json ./
-
 # Install dependencies
 RUN npm install
-
 # Copy the rest of your application code
 COPY . .
-
 # Expose the port the app runs on
 EXPOSE 3111
-
 # Command to run the application
 CMD ["node", "app.js"]
 
