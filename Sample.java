@@ -38,4 +38,27 @@ pipeline {
         }
     }
 }
+nodejs pipeline
+    pipeline {
+    agent any
 
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/deepak574/nodejsexample.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                bat 'node app.js'
+            }
+        }
+    }
+}
