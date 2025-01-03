@@ -104,7 +104,7 @@ RUN javac Sample.java
 # Command to run the program
 CMD ["java", "Sample"]
 
-    ............................................................................................
+............................................................................................
 
     
 app.js for docker nodejs
@@ -146,7 +146,7 @@ EXPOSE 3111
 # Command to run the application
 CMD ["node", "app.js"]
 
-    .......................................
+.......................................
     
 docker build -t dockernodejs ""
 docker run -d -p 3111:3111 dockernodejs
