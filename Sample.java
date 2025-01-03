@@ -10,6 +10,7 @@ public class Sample {
 
 
 java pipeline
+    
 pipeline {
     agent any
 
@@ -42,8 +43,9 @@ pipeline {
 
 ..................................................................................................................
     
-app.js
-    const express = require('express');
+app.js using java prgm
+    
+const express = require('express');
 
 const app = express();
 
@@ -58,6 +60,7 @@ app.listen(3020, () => {
 ............................................................................................................
 
 nodejs pipeline
+    
     pipeline {
     agent any
 
@@ -83,3 +86,68 @@ nodejs pipeline
 }
 
 ....................................................................................................................
+
+touch Dockerfile java prgm
+
+    # Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jdk-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . .
+
+# Compile the Java program
+RUN javac Sample.java
+
+# Command to run the program
+CMD ["java", "Sample"]
+
+    ............................................................................................
+
+    
+app.js for docker nodejs
+    const express = require('express');
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, world! I am from Node.js'); 
+});
+
+app.listen(3111, () => {
+  console.log('Server is running on Port 3111');
+});
+
+................................................................................
+
+touch dockerfile using nodejs
+
+    # Use the official Node.js image from the Docker Hub
+FROM node:14
+
+# Set the working directory inside the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json (if available)
+COPY package.json ./
+COPY package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of your application code
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 3111
+
+# Command to run the application
+CMD ["node", "app.js"]
+
+    .......................................
+    
+docker build -t dockernodejs ""
+docker run -d -p 3111:3111 dockernodejs
+    
