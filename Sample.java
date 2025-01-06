@@ -1,151 +1,81 @@
-[1]
-public class Sample {
-    public static void main(String[] args) {
-    
-        double num1 = 5.0; 
-        double num2 = 10.0;
-        double result = num1 * num2;
-        System.out.println("The result of multiplication is: " + result);}}
-
-..........................................................................................................
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:unittest/counter.dart';
 
 
-java pipeline
-    
-pipeline {
-    agent any
+void main()
+{
+  group("add,sub,mul,div", (){
+    test("test addition",(){
+      double r=Calculator.add(2.5,2.5);
+      expect(r,5.0);
+    });
+    test("test subtraction",(){
+      double r=Calculator.sub(2.5,2.5);
+      expect(r,0);
+    });
+    test("test multiplication",(){
+      double r=Calculator.mul(2,2);
+      expect(r,4.0);
+    });
+    test("test division",(){
+      double r=Calculator.div(5.0,2.5);
+      expect(r,2.0);
+    });
+  });
+  // test("test addition",(){
+  //   double r=Calculator.add(2.5,2.5);
+  //   expect(r,4.0);
+  // });
 
-    stages {
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Mromar1112/project1.git'
-            }
-        }
-        stage('Build') {
-            steps {
-                
-                bat 'javac Sample.java'
-            }
-        }
-        stage('Test') {
-            steps {
-               
-                bat 'java Sample'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-              
-            }
-        }
-    }
 }
 
-..................................................................................................................
 
-[2]
-app.js using java prgm
-    
-const express = require('express');
-
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello, world! I am from Node.js'); 
-});
-
-app.listen(3020, () => {
-  console.log('Server is running on Port 3020');
-});
-
-............................................................................................................
-
-nodejs pipeline
-    
-    pipeline {
-    agent any
-
-    stages {
-        stage('Clone Repository') {
-            steps {
-                git branch: 'main', url: 'https://github.com/deepak574/nodejsexample.git'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                bat 'npm install'
-            }
-        }
-
-        stage('Run Application') {
-            steps {
-                bat 'node app.js'
-            }
-        }
-    }
+class Calculator
+{
+  static double add(double a,double b)
+  {
+    return a+b;
+  }
+  static double sub(double a,double b)
+  {
+    return a-b;
+  }
+  static double div(double a,double b)
+  {
+    return a/b;
+  }
+  static double mul(double a,double b)
+  {
+    return a*b;
+  }
 }
 
-....................................................................................................................
 
-[3]
-    
-touch Dockerfile java prgm
+import 'package:flutter/material.dart';
 
-    # Use an official OpenJDK runtime as a parent image
-FROM openjdk:11-jdk-slim
+void main() => runApp(const MyApp());
 
-# Set the working directory inside the container
-WORKDIR /app
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-# Copy the current directory contents into the container at /app
-COPY . .
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const MyHomePage(),
+    );
+  }
+}
 
-# Compile the Java program
-RUN javac Sample.java
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
-# Command to run the program
-CMD ["java", "Sample"]
-..
-docker build -t dockernodejs ""
-............................................................................................
-
-[4]
-    
-app.js for docker nodejs
-    
-const express = require('express');
-const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello, world! I am from Node.js'); 
-});
-app.listen(3111, () => {
-  console.log('Server is running on Port 3111');
-});
-
-................................................................................
-
-touch dockerfile using nodejs
-
-  
-FROM node:14
-# Set the working directory inside the container
-WORKDIR /usr/src/app
-# Copy package.json and package-lock.json (if available)
-COPY package.json ./
-COPY package-lock.json ./
-# Install dependencies
-RUN npm install
-# Copy the rest of your application code
-COPY . .
-# Expose the port the app runs on
-EXPOSE 3111
-# Command to run the application
-CMD ["node", "app.js"]
-
-.......................................
-    
-docker build -t dockernodejs ""
-docker run -d -p 3111:3111 dockernodejs
-    
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Widget Example')),
+      body: const Center(child: Text('Welcome to your first widget page')),
+    );
+  }
+}
